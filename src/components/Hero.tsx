@@ -20,7 +20,7 @@ export function Hero() {
             <span className="text-primary">Inspiring</span> Generations.
           </h1>
           <p className="mt-5 max-w-xl text-lg leading-relaxed text-muted-foreground">
-            Alphabet Publishers is dedicated to publishing and delivering high-quality educational, academic, and inspirational books for students, teachers, professionals, and lifelong learners.
+            Alphabet Nigerian Publishers is dedicated to publishing and delivering high-quality educational, academic, and inspirational books for students, teachers, professionals, and lifelong learners.
           </p>
           <div className="mt-8 flex flex-wrap gap-3">
             <Button asChild size="lg">

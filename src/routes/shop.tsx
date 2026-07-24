@@ -9,10 +9,10 @@ import { books, categories } from "@/data/books";
 export const Route = createFileRoute("/shop")({
   head: () => ({
     meta: [
-      { title: "Shop — Alphabet Publishers" },
-      { name: "description", content: "Browse and order books by category from Alphabet Publishers — educational, fiction, science, children's, and more." },
-      { property: "og:title", content: "Shop — Alphabet Publishers" },
-      { property: "og:description", content: "Browse and order books by category from Alphabet Publishers." },
+      { title: "Shop — Alphabet Nigerian Publishers" },
+      { name: "description", content: "Browse and order books by category from Alphabet Nigerian Publishers — educational, fiction, science, children's, and more." },
+      { property: "og:title", content: "Shop — Alphabet Nigerian Publishers" },
+      { property: "og:description", content: "Browse and order books by category from Alphabet Nigerian Publishers." },
     ],
   }),
   component: Shop,

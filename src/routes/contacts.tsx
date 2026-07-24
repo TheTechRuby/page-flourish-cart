@@ -9,10 +9,10 @@ import { toast } from "sonner";
 export const Route = createFileRoute("/contacts")({
   head: () => ({
     meta: [
-      { title: "Contact — Alphabet Publishers" },
-      { name: "description", content: "Get in touch with Alphabet Publishers — address, phone, email, business hours, and contact form." },
-      { property: "og:title", content: "Contact — Alphabet Publishers" },
-      { property: "og:description", content: "Get in touch with the Alphabet Publishers team." },
+      { title: "Contact — Alphabet Nigerian Publishers" },
+      { name: "description", content: "Get in touch with Alphabet Nigerian Publishers — address, phone, email, business hours, and contact form." },
+      { property: "og:title", content: "Contact — Alphabet Nigerian Publishers" },
+      { property: "og:description", content: "Get in touch with the Alphabet Nigerian Publishers team." },
     ],
   }),
   component: Contacts,

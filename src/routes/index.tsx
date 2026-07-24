@@ -8,9 +8,9 @@ import { books } from "@/data/books";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Alphabet Publishers — Publishing Knowledge. Inspiring Generations." },
-      { name: "description", content: "Quality educational, academic, and inspirational books from Alphabet Publishers. Browse our featured titles and order online." },
-      { property: "og:title", content: "Alphabet Publishers — Publishing Knowledge. Inspiring Generations." },
+      { title: "Alphabet Nigerian Publishers — Publishing Knowledge. Inspiring Generations." },
+      { name: "description", content: "Quality educational, academic, and inspirational books from Alphabet Nigerian Publishers. Browse our featured titles and order online." },
+      { property: "og:title", content: "Alphabet Nigerian Publishers — Publishing Knowledge. Inspiring Generations." },
       { property: "og:description", content: "Quality educational, academic, and inspirational books for students, teachers, and lifelong learners." },
     ],
   }),
@@ -36,7 +36,7 @@ function Home() {
           <div className="text-xs font-semibold uppercase tracking-widest text-primary">About Us</div>
           <h2 className="mt-2 font-display text-3xl font-bold sm:text-4xl">A publisher devoted to lasting knowledge.</h2>
           <p className="mt-4 text-muted-foreground">
-            For over two decades, Alphabet Publishers has partnered with authors, educators, and institutions to bring extraordinary books to readers everywhere.
+            For over two decades, Alphabet Nigerian Publishers has partnered with authors, educators, and institutions to bring extraordinary books to readers everywhere.
           </p>
         </div>
         <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">

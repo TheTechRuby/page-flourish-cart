@@ -56,7 +56,7 @@ export function Footer() {
             className="mt-4 flex gap-2"
             onSubmit={(e) => {
               e.preventDefault();
-              toast.success("Subscribed! Welcome to Alphabet Publishers.");
+              toast.success("Subscribed! Welcome to Alphabet Nigerian Publishers.");
               (e.currentTarget as HTMLFormElement).reset();
             }}
           >
@@ -67,7 +67,7 @@ export function Footer() {
       </div>
       <div className="border-t border-border">
         <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-2 px-4 py-6 text-xs text-muted-foreground sm:flex-row sm:px-6 lg:px-8">
-          <div>© {new Date().getFullYear()} Alphabet Publishers. All rights reserved.</div>
+          <div>© {new Date().getFullYear()} Alphabet Nigerian Publishers. All rights reserved.</div>
           <div>Publishing knowledge. Inspiring generations.</div>
         </div>
       </div>
