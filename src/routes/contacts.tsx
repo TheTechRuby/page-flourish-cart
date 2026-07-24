@@ -19,9 +19,9 @@ export const Route = createFileRoute("/contacts")({
 });
 
 const info = [
-  { icon: MapPin, label: "Address", value: "24 Editors' Lane, Publishing District, Lagos, Nigeria" },
-  { icon: Phone, label: "Phone", value: "+234 (0) 812 000 0100 · +234 (0) 812 000 0200" },
-  { icon: Mail, label: "Email", value: "hello@alphabetpublishers.com" },
+  { icon: MapPin, label: "Address", value: "61 Mbaise Road, Owerri, Imo State" },
+  { icon: Phone, label: "Phone", value: "+234 803 048 3625" },
+  { icon: Mail, label: "Email", value: "Alphabetpublishers61@gmail.com" },
   { icon: Clock, label: "Business Hours", value: "Mon – Fri · 9:00 AM – 6:00 PM (WAT)" },
   { icon: Headphones, label: "Customer Support", value: "support@alphabetpublishers.com" },
 ];
