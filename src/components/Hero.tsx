@@ -13,7 +13,7 @@ export function Hero() {
         <div className="animate-in fade-in slide-in-from-bottom-4 duration-700">
           <div className="inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/5 px-3 py-1 text-xs font-medium text-primary">
             <BookMarked className="h-3.5 w-3.5" />
-            Publishing excellence since 1998
+            Publishing excellence since 1996
           </div>
           <h1 className="mt-5 font-display text-4xl font-bold leading-[1.05] text-foreground sm:text-5xl lg:text-6xl">
             Publishing Knowledge.<br />
@@ -33,7 +33,7 @@ export function Hero() {
           <dl className="mt-10 grid max-w-md grid-cols-3 gap-4">
             {[
               { n: "25+", l: "Years publishing" },
-              { n: "1,200+", l: "Titles in print" },
+              { n: "500+", l: "Titles in print" },
               { n: "500K+", l: "Readers worldwide" },
             ].map((s) => (
               <div key={s.l}>
