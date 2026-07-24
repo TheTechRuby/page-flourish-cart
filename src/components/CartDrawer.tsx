@@ -63,7 +63,7 @@ export function CartDrawer() {
                           <Plus className="h-3 w-3" />
                         </button>
                       </div>
-                      <div className="font-display text-sm font-bold text-primary">${(book.price * qty).toFixed(2)}</div>
+                      <div className="font-display text-sm font-bold text-primary">₦{(book.price * qty).toFixed(2)}</div>
                     </div>
                   </div>
                 </div>
@@ -73,13 +73,13 @@ export function CartDrawer() {
             <div className="border-t border-border bg-secondary/30 px-6 py-5">
               <div className="space-y-1.5 text-sm">
                 <div className="flex justify-between text-muted-foreground">
-                  <span>Subtotal</span><span>${total.toFixed(2)}</span>
+                  <span>Subtotal</span><span>₦{total.toFixed(2)}</span>
                 </div>
                 <div className="flex justify-between text-muted-foreground">
-                  <span>Shipping</span><span>${shipping.toFixed(2)}</span>
+                  <span>Shipping</span><span>₦{shipping.toFixed(2)}</span>
                 </div>
                 <div className="flex justify-between border-t border-border pt-2 font-display text-lg font-bold">
-                  <span>Total</span><span className="text-primary">${(total + shipping).toFixed(2)}</span>
+                  <span>Total</span><span className="text-primary">₦{(total + shipping).toFixed(2)}</span>
                 </div>
               </div>
               <div className="mt-4 flex flex-col gap-2">

@@ -57,7 +57,7 @@ export function BookCard({ book }: { book: Book }) {
           <span className="font-medium">{book.rating.toFixed(1)}</span>
         </div>
         <div className="mt-auto flex items-center justify-between pt-4">
-          <div className="font-display text-2xl font-bold text-primary">${book.price.toFixed(2)}</div>
+          <div className="font-display text-2xl font-bold text-primary">₦{book.price.toFixed(2)}</div>
           <Button
             size="sm"
             onClick={handleOrder}

@@ -97,15 +97,15 @@ export function CheckoutModal() {
                   {items.map(({ book, qty }) => (
                     <div key={book.id} className="flex justify-between gap-2 text-sm">
                       <span className="min-w-0 truncate">{book.title} × {qty}</span>
-                      <span className="shrink-0 font-medium">${(book.price * qty).toFixed(2)}</span>
+                      <span className="shrink-0 font-medium">₦{(book.price * qty).toFixed(2)}</span>
                     </div>
                   ))}
                 </div>
                 <div className="mt-4 space-y-1.5 border-t border-border pt-3 text-sm">
-                  <div className="flex justify-between text-muted-foreground"><span>Subtotal</span><span>${total.toFixed(2)}</span></div>
-                  <div className="flex justify-between text-muted-foreground"><span>Shipping</span><span>${shipping.toFixed(2)}</span></div>
+                  <div className="flex justify-between text-muted-foreground"><span>Subtotal</span><span>₦{total.toFixed(2)}</span></div>
+                  <div className="flex justify-between text-muted-foreground"><span>Shipping</span><span>₦{shipping.toFixed(2)}</span></div>
                   <div className="flex justify-between border-t border-border pt-2 font-display text-base font-bold">
-                    <span>Total</span><span className="text-primary">${(total + shipping).toFixed(2)}</span>
+                    <span>Total</span><span className="text-primary">₦{(total + shipping).toFixed(2)}</span>
                   </div>
                 </div>
                 <div className="mt-5 flex flex-col gap-2">

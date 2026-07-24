@@ -23,7 +23,7 @@ export const categories = [
 ];
 
 export const books: Book[] = [
-  { id: "1", title: "Citizenship and Heritage Studies", author: "Dr. TNJ Umunnakwe", description: "A comprehensive guide to abstract algebra for university students.", price: 5000, category: "Educational", rating: 4.8, inStock: true, cover: { bg: "#1B5E20", accent: "#A5D6A7" } },
+  { id: "1", title: "Citizenship and Heritage Studies", author: "Dr. TNJ Umunnakwe", description: "This book helps SS1 students understand citizenship, cultural heritage, and the values needed to become responsible members of society.", price: 5000, category: "Educational", rating: 4.8, inStock: true, cover: { bg: "#1B5E20", accent: "#A5D6A7" } },
   { id: "2", title: "The Silent Library", author: "Nadia Kwame", description: "A gripping literary novel about memory, loss, and books that speak.", price: 18.5, category: "Fiction", rating: 4.6, inStock: true, cover: { bg: "#2E7D32", accent: "#FFF3E0" } },
   { id: "3", title: "Little Explorers ABC", author: "Sam Rivers", description: "Colorful alphabet adventure for early readers ages 3-6.", price: 12.99, category: "Children's Books", rating: 4.9, inStock: true, cover: { bg: "#FFB300", accent: "#1B5E20" } },
   { id: "4", title: "The Physics of Everything", author: "Prof. Ethan Wells", description: "From quantum fields to cosmology — a unified journey.", price: 42.0, category: "Science", rating: 4.7, inStock: true, cover: { bg: "#0D47A1", accent: "#A5D6A7" } },
