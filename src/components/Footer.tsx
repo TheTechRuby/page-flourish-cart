@@ -1,5 +1,6 @@
 import { Link } from "@tanstack/react-router";
-import { BookOpen, Facebook, Instagram, Linkedin, Twitter } from "lucide-react";
+import { Facebook, Instagram, Linkedin, Twitter } from "lucide-react";
+import logoAsset from "@/assets/logo.jpeg.asset.json";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { toast } from "sonner";
@@ -10,9 +11,11 @@ export function Footer() {
       <div className="mx-auto grid max-w-7xl gap-10 px-4 py-14 sm:px-6 lg:grid-cols-4 lg:px-8">
         <div>
           <div className="flex items-center gap-2.5">
-            <span className="grid h-10 w-10 place-items-center rounded-lg bg-gradient-hero text-primary-foreground">
-              <BookOpen className="h-5 w-5" />
-            </span>
+            <img
+              src={logoAsset.url}
+              alt="Alphabet Publishers logo"
+              className="h-10 w-10 shrink-0 rounded-lg object-cover shadow-card"
+            />
             <div className="flex flex-col leading-none">
               <span className="font-display text-lg font-bold">Alphabet</span>
               <span className="text-[11px] uppercase tracking-widest text-muted-foreground">Publishers</span>
