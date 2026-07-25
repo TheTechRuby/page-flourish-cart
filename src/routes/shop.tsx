@@ -23,17 +23,25 @@ function Shop() {
   const [cat, setCat] = useState("All");
   const [sort, setSort] = useState("popular");
 
+  const searchTerms = useMemo(() => q.trim().toLowerCase().split(/\s+/).filter(Boolean), [q]);
+
   const filtered = useMemo(() => {
-    let list = books.filter((b) =>
-      (cat === "All" || b.category === cat) &&
-      (b.title.toLowerCase().includes(q.toLowerCase()) || b.author.toLowerCase().includes(q.toLowerCase()))
-    );
+    let list = books.filter((b) => {
+      const matchesCategory = cat === "All" || b.category === cat;
+      if (!matchesCategory) return false;
+
+      if (searchTerms.length === 0) return true;
+
+      const haystack = `${b.title} ${b.description} ${b.author}`.toLowerCase();
+      return searchTerms.every((term) => haystack.includes(term));
+    });
+
     if (sort === "price-asc") list = [...list].sort((a, b) => a.price - b.price);
     if (sort === "price-desc") list = [...list].sort((a, b) => b.price - a.price);
     if (sort === "newest") list = [...list].sort((a, b) => Number(b.id) - Number(a.id));
     if (sort === "popular") list = [...list].sort((a, b) => b.rating - a.rating);
     return list;
-  }, [q, cat, sort]);
+  }, [searchTerms, cat, sort]);
 
   return (
     <>
@@ -54,7 +62,7 @@ function Shop() {
             <Input
               value={q}
               onChange={(e) => setQ(e.target.value)}
-              placeholder="Search by title or author…"
+              placeholder="Search by title, description, or author…"
               className="pl-9"
             />
           </div>
