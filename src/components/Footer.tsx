@@ -1,5 +1,6 @@
 import { Link } from "@tanstack/react-router";
-import { BookOpen, Facebook, Instagram, Linkedin, Twitter } from "lucide-react";
+import { Facebook, Instagram, Linkedin, Twitter } from "lucide-react";
+import logoAsset from "@/assets/logo.jpeg.asset.json";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { toast } from "sonner";
