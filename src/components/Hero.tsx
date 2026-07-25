@@ -51,8 +51,8 @@ export function Hero() {
             <div className="flex h-full flex-col justify-between p-4">
               <div className="text-[10px] font-semibold uppercase tracking-widest text-[#A5D6A7]">Alphabet</div>
               <div>
-                <div className="font-display text-base font-semibold leading-tight text-white">Foundations of Modern Algebra</div>
-                <div className="mt-1 text-[10px] uppercase tracking-wider text-white/70">Dr. Amara Okafor</div>
+                <div className="font-display text-base font-semibold leading-tight text-white">Citizenship and Heritage Studies</div>
+                <div className="mt-1 text-[10px] uppercase tracking-wider text-white/70">Dr. TNJ Umunnakwe</div>
               </div>
               <div className="h-1 w-full rounded" style={{ background: "#A5D6A7" }} />
             </div>
@@ -63,8 +63,8 @@ export function Hero() {
             <div className="flex h-full flex-col justify-between p-4">
               <div className="text-[10px] font-semibold uppercase tracking-widest text-[#FFF8E1]">Alphabet</div>
               <div>
-                <div className="font-display text-lg font-semibold leading-tight text-white">Whispers of Grace</div>
-                <div className="mt-1 text-[10px] uppercase tracking-wider text-white/70">Rev. Joanna Adeyemi</div>
+                <div className="font-display text-lg font-semibold leading-tight text-white">Digital Technologies</div>
+                <div className="mt-1 text-[10px] uppercase tracking-wider text-white/70">Riches Ubani</div>
               </div>
               <div className="h-1 w-full rounded" style={{ background: "#FFF8E1" }} />
             </div>
@@ -75,8 +75,8 @@ export function Hero() {
             <div className="flex h-full flex-col justify-between p-4">
               <div className="text-[10px] font-semibold uppercase tracking-widest text-[#A5D6A7]">Alphabet</div>
               <div>
-                <div className="font-display text-base font-semibold leading-tight text-white">The Physics of Everything</div>
-                <div className="mt-1 text-[10px] uppercase tracking-wider text-white/70">Prof. Ethan Wells</div>
+                <div className="font-display text-base font-semibold leading-tight text-white">Prevocational Studies</div>
+                <div className="mt-1 text-[10px] uppercase tracking-wider text-white/70">Princewill Umunnakwe</div>
               </div>
               <div className="h-1 w-full rounded" style={{ background: "#A5D6A7" }} />
             </div>
