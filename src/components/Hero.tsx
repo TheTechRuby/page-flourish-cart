@@ -49,7 +49,7 @@ export function Hero() {
           <div className="absolute left-[10%] top-[10%] h-64 w-44 rounded-md shadow-elegant animate-float"
                style={{ background: "linear-gradient(135deg, #1B5E20 0%, #2E7D32 100%)" }}>
             <div className="flex h-full flex-col justify-between p-4">
-              <div className="text-[10px] font-semibold uppercase tracking-widest text-[#A5D6A7]">Alphabet</div>
+              <div className="text-[10px] font-semibold uppercase tracking-widest text-[#A5D6A7]">Alphabet Nigerian Publishers</div>
               <div>
                 <div className="font-display text-base font-semibold leading-tight text-white">Citizenship and Heritage Studies</div>
                 <div className="mt-1 text-[10px] uppercase tracking-wider text-white/70">Dr. TNJ Umunnakwe</div>
@@ -61,7 +61,7 @@ export function Hero() {
           <div className="absolute left-[38%] top-[22%] h-72 w-48 rotate-6 rounded-md shadow-elegant animate-float-delayed"
                style={{ background: "linear-gradient(135deg, #6D4C41 0%, #8D6E63 100%)" }}>
             <div className="flex h-full flex-col justify-between p-4">
-              <div className="text-[10px] font-semibold uppercase tracking-widest text-[#FFF8E1]">Alphabet</div>
+              <div className="text-[10px] font-semibold uppercase tracking-widest text-[#FFF8E1]">Alphabet Nigerian Publishers</div>
               <div>
                 <div className="font-display text-lg font-semibold leading-tight text-white">Digital Technologies</div>
                 <div className="mt-1 text-[10px] uppercase tracking-wider text-white/70">Riches Ubani</div>
@@ -73,7 +73,7 @@ export function Hero() {
           <div className="absolute right-[5%] top-[30%] h-60 w-40 -rotate-6 rounded-md shadow-elegant animate-float"
                style={{ background: "linear-gradient(135deg, #0D47A1 0%, #1565C0 100%)" }}>
             <div className="flex h-full flex-col justify-between p-4">
-              <div className="text-[10px] font-semibold uppercase tracking-widest text-[#A5D6A7]">Alphabet</div>
+              <div className="text-[10px] font-semibold uppercase tracking-widest text-[#A5D6A7]">Alphabet Nigerian Publishers</div>
               <div>
                 <div className="font-display text-base font-semibold leading-tight text-white">Prevocational Studies</div>
                 <div className="mt-1 text-[10px] uppercase tracking-wider text-white/70">Princewill Umunnakwe</div>
