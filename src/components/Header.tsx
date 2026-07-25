@@ -35,9 +35,11 @@ export function Header() {
     >
       <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-4 sm:px-6 lg:px-8">
         <Link to="/" className="flex min-w-0 items-center gap-2.5">
-          <span className="grid h-10 w-10 shrink-0 place-items-center rounded-lg bg-gradient-hero text-primary-foreground shadow-card">
-            <BookOpen className="h-5 w-5" />
-          </span>
+          <img
+            src={logoAsset.url}
+            alt="Alphabet Publishers logo"
+            className="h-10 w-10 shrink-0 rounded-lg object-cover shadow-card"
+          />
           <span className="flex flex-col leading-none">
             <span className="font-display text-lg font-bold text-foreground">Alphabet</span>
             <span className="text-[11px] uppercase tracking-widest text-muted-foreground">Publishers</span>
