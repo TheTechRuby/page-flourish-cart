@@ -1,3 +1,14 @@
+import citizenshipHeritageSss1 from "@/assets/books/citizenship-heritage-sss1.png.asset.json";
+import digitalTechSss1 from "@/assets/books/digital-tech-sss1.png.asset.json";
+import solarPvSss1 from "@/assets/books/solar-pv-sss1.png.asset.json";
+import digitalTechJss1 from "@/assets/books/digital-tech-jss1.png.asset.json";
+import solarPvJss1 from "@/assets/books/solar-pv-jss1.png.asset.json";
+import socialCitizenshipJss1 from "@/assets/books/social-citizenship-jss1.png.asset.json";
+import prevocationalPry4 from "@/assets/books/prevocational-pry4.png.asset.json";
+import socialCitizenshipPry1 from "@/assets/books/social-citizenship-pry1.png.asset.json";
+import socialCitizenshipPry4 from "@/assets/books/social-citizenship-pry4.png.asset.json";
+import digitalLiteracyPry4 from "@/assets/books/digital-literacy-pry4.png.asset.json";
+
 export type Book = {
   id: string;
   title: string;
@@ -8,6 +19,20 @@ export type Book = {
   rating: number;
   inStock: boolean;
   cover: { bg: string; accent: string };
+  image?: string;
+};
+
+const coverImages: Record<string, string> = {
+  "1": citizenshipHeritageSss1.url,
+  "4": digitalTechSss1.url,
+  "5": solarPvSss1.url,
+  "9": solarPvJss1.url,
+  "10": digitalTechJss1.url,
+  "11": socialCitizenshipJss1.url,
+  "41": prevocationalPry4.url,
+  "44": socialCitizenshipPry1.url,
+  "47": socialCitizenshipPry4.url,
+  "56": digitalLiteracyPry4.url,
 };
 
 export const categories = [
