@@ -115,3 +115,7 @@ const rawBooks: Book[] = [
   { id: "65", title: "Adventures of Wisdom and Goodness JSS 1", author: "Alphabet Nigerian Publishers", description: "A colorful children's story that teaches values and wisdom.", price: 1500, category: "Children's Books", rating: 4.7, inStock: true, cover: { bg: "#F9A825", accent: "#FFF8E1" } },
   { id: "66", title: "Lions Gate to the Rescue Pry 1", author: "Alphabet Nigerian Publishers", description: "A fun and uplifting children’s story with a heroic theme.", price: 1500, category: "Children's Books", rating: 4.7, inStock: true, cover: { bg: "#7CB342", accent: "#F1F8E9" } },
 ];
+
+export const books: Book[] = rawBooks.map((b) =>
+  coverImages[b.id] ? { ...b, image: coverImages[b.id] } : b
+);
