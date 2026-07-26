@@ -2,6 +2,21 @@ import type { Book } from "@/data/books";
 
 export function BookCover({ book, className = "" }: { book: Book; className?: string }) {
   const { bg, accent } = book.cover;
+  if (book.image) {
+    return (
+      <div
+        className={`relative aspect-[2/3] w-full overflow-hidden rounded-md shadow-card ${className}`}
+        aria-label={`Cover of ${book.title}`}
+      >
+        <img
+          src={book.image}
+          alt={`Cover of ${book.title}`}
+          className="absolute inset-0 h-full w-full object-cover"
+          loading="lazy"
+        />
+      </div>
+    );
+  }
   return (
     <div
       className={`relative aspect-[2/3] w-full overflow-hidden rounded-md shadow-card ${className}`}

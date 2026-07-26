@@ -1,3 +1,14 @@
+import citizenshipHeritageSss1 from "@/assets/books/citizenship-heritage-sss1.png.asset.json";
+import digitalTechSss1 from "@/assets/books/digital-tech-sss1.png.asset.json";
+import solarPvSss1 from "@/assets/books/solar-pv-sss1.png.asset.json";
+import digitalTechJss1 from "@/assets/books/digital-tech-jss1.png.asset.json";
+import solarPvJss1 from "@/assets/books/solar-pv-jss1.png.asset.json";
+import socialCitizenshipJss1 from "@/assets/books/social-citizenship-jss1.png.asset.json";
+import prevocationalPry4 from "@/assets/books/prevocational-pry4.png.asset.json";
+import socialCitizenshipPry1 from "@/assets/books/social-citizenship-pry1.png.asset.json";
+import socialCitizenshipPry4 from "@/assets/books/social-citizenship-pry4.png.asset.json";
+import digitalLiteracyPry4 from "@/assets/books/digital-literacy-pry4.png.asset.json";
+
 export type Book = {
   id: string;
   title: string;
@@ -8,6 +19,20 @@ export type Book = {
   rating: number;
   inStock: boolean;
   cover: { bg: string; accent: string };
+  image?: string;
+};
+
+const coverImages: Record<string, string> = {
+  "1": citizenshipHeritageSss1.url,
+  "4": digitalTechSss1.url,
+  "5": solarPvSss1.url,
+  "9": solarPvJss1.url,
+  "10": digitalTechJss1.url,
+  "11": socialCitizenshipJss1.url,
+  "41": prevocationalPry4.url,
+  "44": socialCitizenshipPry1.url,
+  "47": socialCitizenshipPry4.url,
+  "56": digitalLiteracyPry4.url,
 };
 
 export const categories = [
@@ -22,7 +47,7 @@ export const categories = [
   "History",
 ];
 
-export const books: Book[] = [
+const rawBooks: Book[] = [
   { id: "1", title: "Citizenship and Heritage Studies SSS 1", author: "Alphabet Nigerian Publishers", description: "A trusted secondary school resource for citizenship and heritage studies.", price: 5100, category: "Educational", rating: 4.8, inStock: true, cover: { bg: "#1B5E20", accent: "#A5D6A7" } },
   { id: "2", title: "Civic Education SSS 2", author: "Alphabet Nigerian Publishers", description: "A practical guide to civic values and responsible citizenship.", price: 3000, category: "Educational", rating: 4.7, inStock: true, cover: { bg: "#2E7D32", accent: "#FFF3E0" } },
   { id: "3", title: "Civic Education SSS 3", author: "Alphabet Nigerian Publishers", description: "A comprehensive civic education text for senior secondary learners.", price: 3000, category: "Educational", rating: 4.7, inStock: true, cover: { bg: "#388E3C", accent: "#E8F5E9" } },
@@ -90,3 +115,7 @@ export const books: Book[] = [
   { id: "65", title: "Adventures of Wisdom and Goodness JSS 1", author: "Alphabet Nigerian Publishers", description: "A colorful children's story that teaches values and wisdom.", price: 1500, category: "Children's Books", rating: 4.7, inStock: true, cover: { bg: "#F9A825", accent: "#FFF8E1" } },
   { id: "66", title: "Lions Gate to the Rescue Pry 1", author: "Alphabet Nigerian Publishers", description: "A fun and uplifting children’s story with a heroic theme.", price: 1500, category: "Children's Books", rating: 4.7, inStock: true, cover: { bg: "#7CB342", accent: "#F1F8E9" } },
 ];
+
+export const books: Book[] = rawBooks.map((b) =>
+  coverImages[b.id] ? { ...b, image: coverImages[b.id] } : b
+);
