@@ -15,6 +15,23 @@ export function CheckoutModal() {
   const [done, setDone] = useState(false);
   const shipping = 4.99;
 
+  const sendTrackingEmail = async (order: Order) => {
+    try {
+      const response = await fetch("/api/send-tracking-email", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ order }),
+      });
+
+      if (!response.ok) {
+        const error = await response.json();
+        console.warn("Email sending failed:", error.message);
+      }
+    } catch (error) {
+      console.warn("Could not send tracking email:", error);
+    }
+  };
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     const form = e.currentTarget as HTMLFormElement;
@@ -54,6 +71,7 @@ export function CheckoutModal() {
     };
 
     addOrder(order);
+    sendTrackingEmail(order);
     setDone(true);
     setTimeout(() => {
       clear();
