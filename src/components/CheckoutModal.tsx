@@ -1,24 +1,65 @@
 import { useState } from "react";
 import { Check, CreditCard, Landmark, Truck } from "lucide-react";
+import { useRouter } from "@tanstack/react-router";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
 import { useCart } from "@/context/CartContext";
+import { addOrder, createTrackingNumber, type Order } from "@/lib/order-tracking";
 
 export function CheckoutModal() {
   const { isCheckoutOpen, closeCheckout, items, total, clear } = useCart();
+  const router = useRouter();
   const [payment, setPayment] = useState<"card" | "bank" | "cod">("card");
   const [done, setDone] = useState(false);
   const shipping = 4.99;
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    const form = e.currentTarget as HTMLFormElement;
+    const formData = new FormData(form);
+    const customerName = String(formData.get("name") ?? "");
+    const email = String(formData.get("email") ?? "");
+    const phone = String(formData.get("phone") ?? "");
+    const address = String(formData.get("addr") ?? "");
+    const city = String(formData.get("city") ?? "");
+    const state = String(formData.get("state") ?? "");
+    const country = String(formData.get("country") ?? "");
+    const trackingNumber = createTrackingNumber();
+
+    const order: Order = {
+      id: trackingNumber,
+      trackingNumber,
+      customerName,
+      email,
+      phone,
+      address,
+      city,
+      state,
+      country,
+      paymentMethod: payment,
+      items: items.map(({ book, qty }) => ({ id: book.id, title: book.title, qty, price: book.price })),
+      subtotal: total,
+      shipping,
+      total: total + shipping,
+      placedAt: new Date().toISOString(),
+      status: "processing",
+      updates: [
+        { status: "processing", message: "Your order has been received and is being prepared.", timestamp: new Date().toISOString() },
+        { status: "packed", message: "Your books are being packed for dispatch.", timestamp: new Date(Date.now() + 60_000).toISOString() },
+        { status: "shipped", message: "Your package is on the way to the courier hub.", timestamp: new Date(Date.now() + 3_600_000).toISOString() },
+        { status: "delivered", message: "Your package will arrive shortly.", timestamp: new Date(Date.now() + 7_200_000).toISOString() },
+      ],
+    };
+
+    addOrder(order);
     setDone(true);
     setTimeout(() => {
       clear();
       setDone(false);
       closeCheckout();
+      router.navigate({ to: "/tracking" });
     }, 2200);
   };
 
@@ -45,19 +86,19 @@ export function CheckoutModal() {
                 <section>
                   <h4 className="font-display text-sm font-bold uppercase tracking-wider">Customer Information</h4>
                   <div className="mt-3 grid gap-3 sm:grid-cols-2">
-                    <div><Label htmlFor="name">Full name</Label><Input id="name" required /></div>
-                    <div><Label htmlFor="email">Email</Label><Input id="email" type="email" required /></div>
-                    <div className="sm:col-span-2"><Label htmlFor="phone">Phone</Label><Input id="phone" required /></div>
+                    <div><Label htmlFor="name">Full name</Label><Input id="name" name="name" required /></div>
+                    <div><Label htmlFor="email">Email</Label><Input id="email" name="email" type="email" required /></div>
+                    <div className="sm:col-span-2"><Label htmlFor="phone">Phone</Label><Input id="phone" name="phone" required /></div>
                   </div>
                 </section>
 
                 <section>
                   <h4 className="font-display text-sm font-bold uppercase tracking-wider">Shipping</h4>
                   <div className="mt-3 grid gap-3 sm:grid-cols-2">
-                    <div><Label htmlFor="country">Country</Label><Input id="country" required /></div>
-                    <div><Label htmlFor="state">State</Label><Input id="state" required /></div>
-                    <div><Label htmlFor="city">City</Label><Input id="city" required /></div>
-                    <div><Label htmlFor="addr">Address</Label><Input id="addr" required /></div>
+                    <div><Label htmlFor="country">Country</Label><Input id="country" name="country" required /></div>
+                    <div><Label htmlFor="state">State</Label><Input id="state" name="state" required /></div>
+                    <div><Label htmlFor="city">City</Label><Input id="city" name="city" required /></div>
+                    <div><Label htmlFor="addr">Address</Label><Input id="addr" name="addr" required /></div>
                   </div>
                 </section>
 
