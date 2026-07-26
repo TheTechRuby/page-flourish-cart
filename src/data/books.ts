@@ -47,7 +47,7 @@ export const categories = [
   "History",
 ];
 
-export const books: Book[] = [
+const rawBooks: Book[] = [
   { id: "1", title: "Citizenship and Heritage Studies SSS 1", author: "Alphabet Nigerian Publishers", description: "A trusted secondary school resource for citizenship and heritage studies.", price: 5100, category: "Educational", rating: 4.8, inStock: true, cover: { bg: "#1B5E20", accent: "#A5D6A7" } },
   { id: "2", title: "Civic Education SSS 2", author: "Alphabet Nigerian Publishers", description: "A practical guide to civic values and responsible citizenship.", price: 3000, category: "Educational", rating: 4.7, inStock: true, cover: { bg: "#2E7D32", accent: "#FFF3E0" } },
   { id: "3", title: "Civic Education SSS 3", author: "Alphabet Nigerian Publishers", description: "A comprehensive civic education text for senior secondary learners.", price: 3000, category: "Educational", rating: 4.7, inStock: true, cover: { bg: "#388E3C", accent: "#E8F5E9" } },
