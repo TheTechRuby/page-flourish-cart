@@ -1,9 +1,9 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { PackageCheck, Search, Truck } from "lucide-react";
-import { useMemo, useState } from "react";
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { getStatusConfig, getStoredOrders, type Order } from "@/lib/order-tracking";
+import { getStatusConfig, getStoredOrders, updateOrderStatus, type Order, type OrderStatus } from "@/lib/order-tracking";
 
 export const Route = createFileRoute("/tracking")({
   head: () => ({
@@ -16,9 +16,12 @@ export const Route = createFileRoute("/tracking")({
 });
 
 function TrackingPage() {
-  const orders = useMemo(() => getStoredOrders(), []);
+  const [orders, setOrders] = useState<Order[]>(() => getStoredOrders());
   const [query, setQuery] = useState("");
   const [result, setResult] = useState<Order | null>(null);
+  const [status, setStatus] = useState<OrderStatus>("processing");
+  const [message, setMessage] = useState("");
+  const [updateFeedback, setUpdateFeedback] = useState("");
 
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
@@ -27,7 +30,26 @@ function TrackingPage() {
       const tracking = order.trackingNumber.toLowerCase();
       return tracking === value || order.email.toLowerCase() === value;
     });
+
     setResult(match ?? null);
+    setStatus(match?.status ?? "processing");
+    setMessage(match?.updates[match.updates.length - 1]?.message ?? "");
+    setUpdateFeedback("");
+  };
+
+  const handleStatusUpdate = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!result) return;
+
+    const updatedOrder = updateOrderStatus(result.trackingNumber, status, message);
+    if (!updatedOrder) {
+      setUpdateFeedback("We could not save that update. Please try again.");
+      return;
+    }
+
+    setOrders((prev) => prev.map((order) => (order.trackingNumber === updatedOrder.trackingNumber ? updatedOrder : order)));
+    setResult(updatedOrder);
+    setUpdateFeedback("Order update saved successfully.");
   };
 
   return (
@@ -79,11 +101,47 @@ function TrackingPage() {
                     <Truck className="h-5 w-5" />
                   </div>
                   <div>
-                    <p className="font-medium">{result.updates[0]?.message ?? "Your order is on the way."}</p>
+                    <p className="font-medium">{result.updates[result.updates.length - 1]?.message ?? "Your order is on the way."}</p>
                     <p className="text-sm text-muted-foreground">Updated {new Date(result.placedAt).toLocaleString()}</p>
                   </div>
                 </div>
               </div>
+
+              <form onSubmit={handleStatusUpdate} className="mt-6 rounded-2xl border border-border bg-background/70 p-4">
+                <div className="flex items-center justify-between gap-3">
+                  <div>
+                    <p className="font-medium">Owner update</p>
+                    <p className="text-sm text-muted-foreground">Adjust the current order status and add a note.</p>
+                  </div>
+                  <Button type="submit" size="sm">Save update</Button>
+                </div>
+
+                <div className="mt-4 grid gap-3 sm:grid-cols-[1fr_1.2fr]">
+                  <div>
+                    <label className="mb-1 block text-sm font-medium">Status</label>
+                    <select
+                      value={status}
+                      onChange={(e) => setStatus(e.target.value as OrderStatus)}
+                      className="h-10 w-full rounded-md border border-border bg-background px-3 text-sm"
+                    >
+                      <option value="processing">Processing</option>
+                      <option value="packed">Packed</option>
+                      <option value="shipped">Shipped</option>
+                      <option value="delivered">Delivered</option>
+                    </select>
+                  </div>
+                  <div>
+                    <label className="mb-1 block text-sm font-medium">Note</label>
+                    <Input
+                      value={message}
+                      onChange={(e) => setMessage(e.target.value)}
+                      placeholder="Leave a delivery update"
+                    />
+                  </div>
+                </div>
+
+                {updateFeedback ? <p className="mt-3 text-sm text-primary">{updateFeedback}</p> : null}
+              </form>
 
               <div className="mt-6 space-y-3">
                 {result.updates.map((update) => (

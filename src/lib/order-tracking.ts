@@ -62,6 +62,30 @@ export function addOrder(order: Order) {
   return orders;
 }
 
+export function updateOrderStatus(trackingNumber: string, status: OrderStatus, message?: string) {
+  if (typeof window === "undefined") return null;
+
+  const normalizedTracking = trackingNumber.trim().toLowerCase();
+  const orders = getStoredOrders();
+  const updatedOrders = orders.map((order) => {
+    if (order.trackingNumber.toLowerCase() !== normalizedTracking) return order;
+
+    const updateMessage = message?.trim() || `Order status updated to ${status}.`;
+
+    return {
+      ...order,
+      status,
+      updates: [...order.updates, { status, message: updateMessage, timestamp: new Date().toISOString() }],
+    };
+  });
+
+  saveOrders(updatedOrders);
+
+  return (
+    updatedOrders.find((order) => order.trackingNumber.toLowerCase() === normalizedTracking) ?? null
+  );
+}
+
 export function getStatusConfig(status: OrderStatus) {
   return {
     processing: {
