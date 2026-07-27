@@ -58,7 +58,24 @@ export function CartDrawer() {
                         <button onClick={() => setQty(book.id, qty - 1)} aria-label="Decrease" className="grid h-7 w-7 place-items-center hover:bg-secondary">
                           <Minus className="h-3 w-3" />
                         </button>
-                        <span className="w-6 text-center text-sm font-medium">{qty}</span>
+                        <input
+                          type="number"
+                          inputMode="numeric"
+                          min="1"
+                          step="1"
+                          value={qty}
+                          onChange={(e) => {
+                            const nextValue = e.target.value;
+                            if (nextValue === "") return;
+
+                            const parsedValue = Number(nextValue);
+                            if (Number.isNaN(parsedValue)) return;
+
+                            setQty(book.id, Math.max(1, parsedValue));
+                          }}
+                          aria-label={`Quantity for ${book.title}`}
+                          className="w-10 border-0 bg-transparent px-1 py-0 text-center text-sm font-medium outline-none [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
+                        />
                         <button onClick={() => setQty(book.id, qty + 1)} aria-label="Increase" className="grid h-7 w-7 place-items-center hover:bg-secondary">
                           <Plus className="h-3 w-3" />
                         </button>
