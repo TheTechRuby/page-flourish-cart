@@ -16,12 +16,17 @@ export const Route = createFileRoute("/tracking")({
 });
 
 function TrackingPage() {
+  const OWNER_ACCESS_CODE = "Management.alphabet.com";
+
   const [orders, setOrders] = useState<Order[]>(() => getStoredOrders());
   const [query, setQuery] = useState("");
   const [result, setResult] = useState<Order | null>(null);
   const [status, setStatus] = useState<OrderStatus>("processing");
   const [message, setMessage] = useState("");
   const [updateFeedback, setUpdateFeedback] = useState("");
+  const [ownerAccessGranted, setOwnerAccessGranted] = useState(false);
+  const [ownerPassword, setOwnerPassword] = useState("");
+  const [ownerError, setOwnerError] = useState("");
 
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
@@ -50,6 +55,18 @@ function TrackingPage() {
     setOrders((prev) => prev.map((order) => (order.trackingNumber === updatedOrder.trackingNumber ? updatedOrder : order)));
     setResult(updatedOrder);
     setUpdateFeedback("Order update saved successfully.");
+  };
+
+  const handleOwnerAccess = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (ownerPassword === OWNER_ACCESS_CODE) {
+      setOwnerAccessGranted(true);
+      setOwnerError("");
+      setOwnerPassword("");
+      return;
+    }
+
+    setOwnerError("Incorrect access code. Please try again.");
   };
 
   return (
@@ -107,41 +124,58 @@ function TrackingPage() {
                 </div>
               </div>
 
-              <form onSubmit={handleStatusUpdate} className="mt-6 rounded-2xl border border-border bg-background/70 p-4">
-                <div className="flex items-center justify-between gap-3">
-                  <div>
-                    <p className="font-medium">Owner update</p>
-                    <p className="text-sm text-muted-foreground">Adjust the current order status and add a note.</p>
-                  </div>
-                  <Button type="submit" size="sm">Save update</Button>
-                </div>
-
-                <div className="mt-4 grid gap-3 sm:grid-cols-[1fr_1.2fr]">
-                  <div>
-                    <label className="mb-1 block text-sm font-medium">Status</label>
-                    <select
-                      value={status}
-                      onChange={(e) => setStatus(e.target.value as OrderStatus)}
-                      className="h-10 w-full rounded-md border border-border bg-background px-3 text-sm"
-                    >
-                      <option value="processing">Processing</option>
-                      <option value="packed">Packed</option>
-                      <option value="shipped">Shipped</option>
-                      <option value="delivered">Delivered</option>
-                    </select>
-                  </div>
-                  <div>
-                    <label className="mb-1 block text-sm font-medium">Note</label>
+              {!ownerAccessGranted ? (
+                <form onSubmit={handleOwnerAccess} className="mt-6 rounded-2xl border border-border bg-background/70 p-4">
+                  <p className="font-medium">Owner access</p>
+                  <p className="mt-1 text-sm text-muted-foreground">Enter the owner access code to update order status.</p>
+                  <div className="mt-3 flex flex-col gap-2 sm:flex-row">
                     <Input
-                      value={message}
-                      onChange={(e) => setMessage(e.target.value)}
-                      placeholder="Leave a delivery update"
+                      type="password"
+                      value={ownerPassword}
+                      onChange={(e) => setOwnerPassword(e.target.value)}
+                      placeholder="Enter access code"
                     />
+                    <Button type="submit" size="sm">Unlock</Button>
                   </div>
-                </div>
+                  {ownerError ? <p className="mt-2 text-sm text-destructive">{ownerError}</p> : null}
+                </form>
+              ) : (
+                <form onSubmit={handleStatusUpdate} className="mt-6 rounded-2xl border border-border bg-background/70 p-4">
+                  <div className="flex items-center justify-between gap-3">
+                    <div>
+                      <p className="font-medium">Owner update</p>
+                      <p className="text-sm text-muted-foreground">Adjust the current order status and add a note.</p>
+                    </div>
+                    <Button type="submit" size="sm">Save update</Button>
+                  </div>
 
-                {updateFeedback ? <p className="mt-3 text-sm text-primary">{updateFeedback}</p> : null}
-              </form>
+                  <div className="mt-4 grid gap-3 sm:grid-cols-[1fr_1.2fr]">
+                    <div>
+                      <label className="mb-1 block text-sm font-medium">Status</label>
+                      <select
+                        value={status}
+                        onChange={(e) => setStatus(e.target.value as OrderStatus)}
+                        className="h-10 w-full rounded-md border border-border bg-background px-3 text-sm"
+                      >
+                        <option value="processing">Processing</option>
+                        <option value="packed">Packed</option>
+                        <option value="shipped">Shipped</option>
+                        <option value="delivered">Delivered</option>
+                      </select>
+                    </div>
+                    <div>
+                      <label className="mb-1 block text-sm font-medium">Note</label>
+                      <Input
+                        value={message}
+                        onChange={(e) => setMessage(e.target.value)}
+                        placeholder="Leave a delivery update"
+                      />
+                    </div>
+                  </div>
+
+                  {updateFeedback ? <p className="mt-3 text-sm text-primary">{updateFeedback}</p> : null}
+                </form>
+              )}
 
               <div className="mt-6 space-y-3">
                 {result.updates.map((update) => (
