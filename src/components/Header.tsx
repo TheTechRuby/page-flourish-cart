@@ -1,10 +1,11 @@
 import { useEffect, useState } from "react";
 import { Link, useRouterState } from "@tanstack/react-router";
-import { Menu, ShoppingCart } from "lucide-react";
+import { Menu, ShoppingCart, LogIn, LogOut } from "lucide-react";
 import logoAsset from "@/assets/logo.jpeg.asset.json";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger, SheetHeader, SheetTitle } from "@/components/ui/sheet";
 import { useCart } from "@/context/CartContext";
+import { useAuth } from "@/context/AuthContext";
 
 const links = [
   { to: "/", label: "Home" },
@@ -17,6 +18,7 @@ export function Header() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const { count, openCart } = useCart();
+  const { signedIn, user, signOut } = useAuth();
   const pathname = useRouterState({ select: (s) => s.location.pathname });
 
   useEffect(() => {
@@ -68,6 +70,25 @@ export function Header() {
         </nav>
 
         <div className="flex items-center gap-2">
+          {signedIn ? (
+            <div className="hidden items-center gap-2 md:flex">
+              <span className="rounded-full border border-border px-3 py-2 text-sm font-medium text-foreground">
+                {user?.name ?? "Signed in"}
+              </span>
+              <Button variant="outline" size="sm" onClick={signOut}>
+                <LogOut className="mr-2 h-4 w-4" />
+                Sign out
+              </Button>
+            </div>
+          ) : (
+            <Button asChild variant="outline" size="sm" className="hidden md:inline-flex">
+              <Link to="/signin" search={{}}>
+                <LogIn className="mr-2 h-4 w-4" />
+                Sign in
+              </Link>
+            </Button>
+          )}
+
           <button
             id="cart-icon"
             onClick={openCart}
@@ -103,6 +124,26 @@ export function Header() {
                     {l.label}
                   </Link>
                 ))}
+                {signedIn ? (
+                  <button
+                    onClick={() => {
+                      setMobileOpen(false);
+                      signOut();
+                    }}
+                    className="mt-2 rounded-md px-4 py-3 text-left text-base font-medium text-foreground transition-colors hover:bg-secondary hover:text-primary"
+                  >
+                    Sign out
+                  </button>
+                ) : (
+                  <Link
+                    to="/signin"
+                    search={{}}
+                    onClick={() => setMobileOpen(false)}
+                    className="mt-2 rounded-md px-4 py-3 text-base font-medium text-foreground transition-colors hover:bg-secondary hover:text-primary"
+                  >
+                    Sign in
+                  </Link>
+                )}
               </nav>
             </SheetContent>
           </Sheet>

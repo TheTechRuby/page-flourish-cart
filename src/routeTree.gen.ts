@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as ContactsRouteImport } from './routes/contacts'
 import { Route as ShopRouteImport } from './routes/shop'
+import { Route as SigninRouteImport } from './routes/signin'
 import { Route as TrackingRouteImport } from './routes/tracking'
 
 const IndexRoute = IndexRouteImport.update({
@@ -29,6 +30,11 @@ const ShopRoute = ShopRouteImport.update({
   path: '/shop',
   getParentRoute: () => rootRouteImport,
 } as any)
+const SigninRoute = SigninRouteImport.update({
+  id: '/signin',
+  path: '/signin',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const TrackingRoute = TrackingRouteImport.update({
   id: '/tracking',
   path: '/tracking',
@@ -39,12 +45,14 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/contacts': typeof ContactsRoute
   '/shop': typeof ShopRoute
+  '/signin': typeof SigninRoute
   '/tracking': typeof TrackingRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/contacts': typeof ContactsRoute
   '/shop': typeof ShopRoute
+  '/signin': typeof SigninRoute
   '/tracking': typeof TrackingRoute
 }
 export interface FileRoutesById {
@@ -52,20 +60,22 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/contacts': typeof ContactsRoute
   '/shop': typeof ShopRoute
+  '/signin': typeof SigninRoute
   '/tracking': typeof TrackingRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/contacts' | '/shop' | '/tracking'
+  fullPaths: '/' | '/contacts' | '/shop' | '/signin' | '/tracking'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/contacts' | '/shop' | '/tracking'
-  id: '__root__' | '/' | '/contacts' | '/shop' | '/tracking'
+  to: '/' | '/contacts' | '/shop' | '/signin' | '/tracking'
+  id: '__root__' | '/' | '/contacts' | '/shop' | '/signin' | '/tracking'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   ContactsRoute: typeof ContactsRoute
   ShopRoute: typeof ShopRoute
+  SigninRoute: typeof SigninRoute
   TrackingRoute: typeof TrackingRoute
 }
 
@@ -92,6 +102,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ShopRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/signin': {
+      id: '/signin'
+      path: '/signin'
+      fullPath: '/signin'
+      preLoaderRoute: typeof SigninRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/tracking': {
       id: '/tracking'
       path: '/tracking'
@@ -106,6 +123,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   ContactsRoute: ContactsRoute,
   ShopRoute: ShopRoute,
+  SigninRoute: SigninRoute,
   TrackingRoute: TrackingRoute,
 }
 export const routeTree = rootRouteImport
